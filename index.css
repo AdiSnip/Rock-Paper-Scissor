@@ -1,0 +1,84 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.heading{
+  background-color: black;
+  color: white;
+  height: 5rem;
+  width: 100vw;
+  text-align: center;
+  line-height: 5rem;
+}
+.choices{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 100px;
+  width: 100vw;
+}
+choice{
+  height: 180px;
+  width: 40%;
+  border-radius: 50%;
+}
+.choice img:hover{
+  border: 5px solid red;
+}
+.choice img{
+  height: 180px;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.scoreboard{
+  width: 100vw;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.score{
+  text-align: center;
+  margin: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.winstatus{
+  width: 100vw;
+  height: 100px;
+  line-height: 100px;
+  display: flex;
+  justify-content: center;
+}
+.winstatus p{
+  text-align: center;
+  font-size: 20px;
+  width: 100vw;
+  height: 100px;
+  line-height: 100px;
+  background-color: black;
+  color: white;
+}
+.computer{
+  height: 60px;
+  width: 100vw;
+  background-color: navy;
+  text-align: center;
+  line-height: 60px;
+  font-size: 20px;
+  color: white;
+}
+
+@media(max-width:700px){
+  .choice{
+    height: 100px;
+    width: 100px;
+    margin: 8px;
+  }
+  .choice img{
+    height: 100px;
+    width: 100px;
+  }
+}

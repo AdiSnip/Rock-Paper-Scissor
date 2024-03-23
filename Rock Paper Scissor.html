@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css" media="all">
+    *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.heading{
+  background-color: black;
+  color: white;
+  height: 5rem;
+  width: 100vw;
+  text-align: center;
+  line-height: 5rem;
+}
+.choices{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 100px;
+  width: 100vw;
+}
+choice{
+  height: 180px;
+  width: 40%;
+  border-radius: 50%;
+}
+.choice img:hover{
+  border: 5px solid red;
+}
+.choice img{
+  height: 180px;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.scoreboard{
+  width: 100vw;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.score{
+  text-align: center;
+  margin: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.winstatus{
+  width: 100vw;
+  height: 100px;
+  line-height: 100px;
+  display: flex;
+  justify-content: center;
+}
+.winstatus p{
+  text-align: center;
+  font-size: 20px;
+  width: 100vw;
+  height: 100px;
+  line-height: 100px;
+  background-color: black;
+  color: white;
+}
+.computer{
+  height: 60px;
+  width: 100vw;
+  background-color: navy;
+  text-align: center;
+  line-height: 60px;
+  font-size: 20px;
+  color: white;
+}
+
+@media(max-width:700px){
+  .choice{
+    height: 100px;
+    width: 100px;
+    margin: 8px;
+  }
+  .choice img{
+    height: 100px;
+    width: 100px;
+  }
+}
+  </style>
+  <title>Rock Paper Scissor </title>
+</head>
+<body>
+	<div class="heading">
+	  <h1>Rock Paper Scissors</h1>
+	</div>
+	<div class="choices">
+	  <div id="rock" class="choice"><img src="rock.jpg" alt="" /></div>
+	  <div id="paper" class="choice"><img src="paper.jpg" alt="" /></div>
+	  <div id="scissor" class="choice"><img src="scissor.jpg" alt="" /></div>
+	</div>
+	<div class="scoreboard">
+	  <div class="score">
+	     <div id="userscore">0</div>
+	     <p>Your</p>
+	  </div>
+	  <div class="score">
+	    <div id="compscore">0</div>
+	     <p>Comp</p>
+	  </div>
+	</div>
+	<div class="computer">
+	  <p id="cchoose">Computers choice</p>
+	</div>
+	
+	<div class="winstatus">
+	 <p> Pick Your Move </p>
+	</div>
+  <script>
+    let choices = document.querySelectorAll(".choice");
+let rock = document.querySelector("#rock");
+let paper = document.querySelector("#paper");
+let scissor = document.querySelector("#scissor");
+let winstatus = document.querySelector(".winstatus")
+let uscore=document.querySelector("#userscore")
+let cscore=document.querySelector("#compscore")
+let compchoose = document.querySelector("#cchoose")
+let userscore=0
+let compscore=0
+let comp=(userchoice)=>{
+  let random=Math.floor(Math.random()*3);
+  let compchoice;
+  if (random<1){
+    compchoice="rock";
+    compchoose.innerText="Computer: Rock";
+  }else if(random<2){
+    compchoice="paper";
+    compchoose.innerText="Computer: Paper";
+  }else if(random<3){
+    compchoice="scissor";
+    compchoose.innerText="Computer: Scissor";
+  }
+  game(userchoice,compchoice)
+}
+let winner=(userwin,userchoice,compchoice)=>{
+  if(userwin===true){
+    winstatus.innerText="you win! "+ userchoice + " beats " + compchoice;
+    winstatus.style.backgroundColor="lightgreen"
+    winstatus.style.color="black"
+    winstatus.style.fontSize="20px"
+    userscore++;
+    uscore.innerText=userscore;
+  }else if(userwin===false){
+    winstatus.innerText="you lose "+compchoice+" beats "+userchoice;
+    winstatus.style.backgroundColor="red"
+    winstatus.style.fontSize="20px"
+    compscore++;
+    cscore.innerText=compscore;
+  }else if(userwin==="draw"){
+    winstatus.innerText="Game Draw Play Again"
+    winstatus.style.backgroundColor="black"
+    winstatus.style.color="white"
+    winstatus.style.fontSize="20px"
+  }
+}
+let game=(userchoice,compchoice)=>{
+  let userwin=true;
+  if(userchoice===compchoice){
+    userwin="draw";
+  }else if(userchoice==="rock" && compchoice==="paper"){
+    userwin=false
+  }else if(userchoice==="paper" && compchoice==="scissor"){
+    userwin=false
+  }else if(userchoice==="scissor" && compchoice==="rock"){
+    userwin=false
+  }else if(userchoice==="rock" && compchoice==="scissor"){
+    userwin=true
+  }else if(userchoice==="paper" && compchoice==="rock"){
+    userwin=true
+  }else if(userchoice==="scissor" && compchoice==="paper"){
+    userwin=true
+  }
+  winner(userwin,userchoice,compchoice);
+};
+choices.forEach(choice => {
+  choice.addEventListener("click", () => {
+    const userchoice = choice.id;  // Get the ID of the clicked element
+    comp(userchoice);
+  });
+});
+
+  </script>
+</body>
+</html>
